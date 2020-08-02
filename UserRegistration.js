@@ -3,42 +3,53 @@ const prompt = require('prompt-sync')();
 // RegEx Formats
 let namePattern = new RegExp("^[A-Z]{1}[A-Za-z]{2}");
 let emailPattern = new RegExp("^[a-zA-Z0-9.+_-]+[@][a-zA-Z0-9]+[.]co(m|.in)$");
+let phonePattern = new RegExp("^[0-9]{1,3} [6-9][0-9]{9}$");
 
 // Variables
 let firstName = "";
 let lastName = "";
 let email = "";
+let phone = "";
 
-function checkFormat(input, inputFormat){
+function validateInput(input, inputFormat){
     return inputFormat.test(input);
 }
 
-function getFirstName(){
+function readFirstName(){
     firstName = prompt("Enter First Name: ");
-    if(!checkFormat(firstName, namePattern)){
+    if(!validateInput(firstName, namePattern)){
         console.log("Enter Valid First Name");
-        getFirstName();
+        readFirstName();
     }
     return;
 }
 
-function getLastName(){
+function readLastName(){
     lastName = prompt("Enter Last Name: ");
-    if(!checkFormat(lastName, namePattern)){
+    if(!validateInput(lastName, namePattern)){
         console.log("Enter Valid Last Name");
-        getLastName();
+        readLastName();
     }
     return
 }
 
-function getEmail(){
+function readEmail(){
     email = prompt("Enter Email: ");
-    if(!checkFormat(email, emailPattern)){
+    if(!validateInput(email, emailPattern)){
         console.log("Enter Valid Email");
-        getEmail();
+        readEmail();
     }
 }
 
-getFirstName();
-getLastName();
-getEmail();
+function readPhoneNumber(){
+    phone = prompt("Enter Phone Number: ");
+    if(!validateInput(phone, phonePattern)){
+        console.log("Enter Valid Phone Number");
+        readPhoneNumber();
+    }
+}
+
+// readFirstName();
+// readLastName();
+// readEmail();
+readPhoneNumber();
